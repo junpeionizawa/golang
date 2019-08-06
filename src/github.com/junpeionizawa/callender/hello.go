@@ -1,15 +1,20 @@
+
+
 package main
 
-import (
-	"fmt"
-	"net/http"
-)
+import "fmt"
+//timeモジュールの機能を使う
+import "time"
 
 func main() {
-	http.HandleFunc("/", handler)
-	http.ListenAndServe(":8080", nil)
-}
-
-func handler(writer http.ResponseWriter, request *http.Request) {
-	fmt.Fprintf(writer, "Hello World!")
+	//現在の時間を代入、:=は関数内のみ使える
+    t := time.Now()
+    fmt.Println(t)           
+    fmt.Println(t.Year())   
+    fmt.Println(t.Month())   
+    fmt.Println(t.Day())   
+    fmt.Println(t.Hour())    
+    fmt.Println(t.Minute())  
+    fmt.Println(t.Second())  
+    fmt.Println(t.Weekday()) 
 }
