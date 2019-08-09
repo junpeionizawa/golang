@@ -1,27 +1,43 @@
 
-
 package main
 
 import (
-	//"bytes"
-	//"fmt"
-	//"io"
-    //"os"
-    //"html/template"
-    "log"
-    "net/http"
-    //"time"
+	"fmt"
+	"net/http"
+	"html/template"
+	"time"
 )
 
-func main() {
-    //ディレクトリを指定する
-    fs := http.FileServer(http.Dir("layout"))
-    //ルーティング設定。"/"というアクセスがきたらstaticディレクトリのコンテンツを表示させる
-    http.Handle("/", fs)
+func main(){
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 
-    log.Println("Listening...")
-    // 3000ポートでサーバーを立ち上げる
-    http.ListenAndServe(":3000", nil)
+		fmt.Println(time.Now().Format("2006/01/02 15:04:05") + " " + r.URL.Path)
 
-   
+		// テンプレート用のファイルを読み込む
+		tpl, err1 := template.ParseFiles("layout/index.html")
+		if err1 != nil {
+			panic(err1)
+		}
+
+		// テンプレートを出力
+		err2 := tpl.Execute(w, struct {
+			Title string
+			Message string
+			List []string
+			Link string
+		}{
+			Title: "Hello",
+			Message: "World",
+			List: []string{
+				"Item1",
+				"Item2",
+				"Item3",
+			},
+		})
+		if err2 != nil {
+			panic(err2)
+		}
+
+	})
+	http.ListenAndServe(":3000", nil)
 }
