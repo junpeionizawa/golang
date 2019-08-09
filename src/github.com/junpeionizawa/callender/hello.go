@@ -2,11 +2,12 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
     "net/http"
     "html/template"
+    //"strings"
+    "time"
 )
-
 func main() {
     fmt.Println("The Server runs with http://localhost:3000/")
     // ここで静的ファイルであるCSSを適用
@@ -24,6 +25,10 @@ func main() {
 type Person struct {
     Name string
     From string
+    Year int
+    Month string
+    Day int
+    Weekday string
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -31,8 +36,13 @@ func Handler(w http.ResponseWriter, r *http.Request) {
     p := Person{
         Name:"hogehoge",
         From : "千葉",
+        Year: time.Now().Year(),
+        Month: time.Now().Month().String(),
+        Day : time.Now().Day(),
+        Weekday :time.Now().Weekday().String(),
     }
 
     tmpl := template.Must(template.ParseFiles("./view/index.html"))
     tmpl.Execute(w, p)
-}
+
+} 
