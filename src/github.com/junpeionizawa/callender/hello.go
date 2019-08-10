@@ -22,27 +22,37 @@ func main() {
     http.ListenAndServe(":3000", nil)
 }
 
-type Person struct {
-    Name string
-    From string
+type Time struct {
     Year int
     Month int
-    Day int
-    Weekday int
+    Day1 int
+    Day2 interface{}
+    Day3 interface{}
+    Day4 interface{}
+    Day5 interface{}
+    Day6 interface{}
+    Day7 interface{}
+    Weekday string
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 
-    p := Person{
-        Name:"hogehoge",
-        From : "千葉",
-        Year: time.Now().Year(),
-        Month: int(time.Now().Month()),
-        Day : time.Now().Day(),
-        Weekday :int(time.Now().Weekday()),
+    t := Time{
+        Year:time.Now().Year(),
+        Month:int(time.Now().Month()),
+        Day1:time.Now().Day(),
+        Day2:time.Now().Add(24 * time.Hour).Day(),
+        Day3 :time.Now().Add(48 * time.Hour).Day(),
+        Day4 :time.Now().Add(72 * time.Hour).Day(),
+        Day5 :time.Now().Add(96 * time.Hour).Day(),
+        Day6 :time.Now().Add(120 * time.Hour).Day(),
+        Day7 :time.Now().Add(144 * time.Hour).Day(),
+        Weekday :time.Now().Weekday().String(),
     }
 
-    tmpl := template.Must(template.ParseFiles("./view/index.html"))
-    tmpl.Execute(w, p)
+
+
+    tmpl := template.Must(template.ParseFiles("./resources/index.html"))
+    tmpl.Execute(w, t)
 
 } 
