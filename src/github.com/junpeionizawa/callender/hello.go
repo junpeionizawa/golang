@@ -26,9 +26,9 @@ type Person struct {
     Name string
     From string
     Year int
-    Month string
+    Month int
     Day int
-    Weekday string
+    Weekday int
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -37,9 +37,9 @@ func Handler(w http.ResponseWriter, r *http.Request) {
         Name:"hogehoge",
         From : "千葉",
         Year: time.Now().Year(),
-        Month: time.Now().Month().String(),
+        Month: int(time.Now().Month()),
         Day : time.Now().Day(),
-        Weekday :time.Now().Weekday().String(),
+        Weekday :int(time.Now().Weekday()),
     }
 
     tmpl := template.Must(template.ParseFiles("./view/index.html"))
