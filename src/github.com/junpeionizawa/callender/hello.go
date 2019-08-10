@@ -33,6 +33,12 @@ type Time struct {
     Day6 interface{}
     Day7 interface{}
     Weekday string
+    Weekday2 string
+    Weekday3 string
+    Weekday4 string
+    Weekday5 string
+    Weekday6 string
+    Weekday7 string
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -47,7 +53,13 @@ func Handler(w http.ResponseWriter, r *http.Request) {
         Day5 :time.Now().Add(96 * time.Hour).Day(),
         Day6 :time.Now().Add(120 * time.Hour).Day(),
         Day7 :time.Now().Add(144 * time.Hour).Day(),
-        Weekday :time.Now().Weekday().String(),
+        Weekday:time.Now().Weekday().String(),
+        Weekday2:time.Now().Add(24 * time.Hour).Weekday().String(),
+        Weekday3:time.Now().Add(48 * time.Hour).Weekday().String(),
+        Weekday4:time.Now().Add(72 * time.Hour).Weekday().String(),
+        Weekday5:time.Now().Add(96 * time.Hour).Weekday().String(),
+        Weekday6:time.Now().Add(120 * time.Hour).Weekday().String(),
+        Weekday7:time.Now().Add(144 * time.Hour).Weekday().String(),
     }
 
 
