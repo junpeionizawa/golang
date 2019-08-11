@@ -7,40 +7,42 @@
     <link rel="stylesheet" type="text/css" href="../resources/styles.css">
 </head>
 <body>
- <div>
- 	<pre><h1 class="month_now">{{.Month }} 月     <span>{{.Year }} 年</span></h1></pre>
- </div>
+<div class="calenderbox">
+ 	<pre><h1 class="month_now"><span>{{.Year }}</span></h1></pre>
   <div id ="box1"> 
-   <div class="box2"> 
-   	<p>{{.Weekday }}</p>
-    <p>{{.Day1 }}</p>
+   <div id="box2"> 
+   	 <p class="Date">{{.Month }}</p>
+     <p class="Date">{{.Day1 }}</p>
+     <p class="Date">{{.Weekday }}</p>
    </div>
-   <div class="box2"> 
-   	<p>{{.Weekday2 }}</p> 
-   	<p>{{.Day2}}</p>
+   <div id="box3"> 
+   	<pre><p class="time">{{.Hour}} : {{.Minute}}</p></pre>
    </div>
-   <div class="box2"> 
-    <p>{{.Weekday3}}</p>
-   	<p>{{.Day3}}</p>
-   </div>
-   <div class="box2">
-    <p>{{.Weekday4}}</p> 
-    <p>{{.Day4}}</p>
-   </div>
-   <div class="box2"> 
-   	<p>{{.Weekday5}}</p> 
-	<p>{{.Day5}}</p>
-   </div>
-   <div class="box2"> 
-   	<p>{{.Weekday6}}</p> 
-	<p>{{.Day6}}</p>
-   </div>
-   <div class="box2"> 
-   	<p>{{.Weekday7}}</p> 
-	<p>{{.Day7}}</p>
-   </div>
-  
   </div>
-</body>
+</div>
 
-</html> 
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>一言</title>
+</head>
+<body>
+<form action="regist.php" method="post">
+  メッセージ：<br />
+  <input type="text" name="message" size="50" value="" /><br />
+  <br />
+  <input type="submit" value="投稿する" />
+</form>
+<?php
+
+$fp = fopen('message.txt', 'r');
+while ($line = fgets($fp)) {
+  echo '<p>' . htmlspecialchars($line, ENT_QUOTES) . "</p>\n";
+}
+fclose($fp);
+
+?>
+</body>
+</html>
+</body>
