@@ -45,7 +45,7 @@ span {
 	box-shadow: 0 10px 10px rgba(20,0,0,0.15);
 }
 
-#box3 {
+#box3{
 	width :50%;
 	height :400px;
 	border : solid 1px #000000;
@@ -53,6 +53,13 @@ span {
 	box-shadow: 0 10px 10px rgba(20,0,0,0.15);
 }
 
+
+#clock {
+	font-size :45px;
+    text-align:center;
+    color : #fff;
+    margin-top: 130px;
+}
 
 #box11 {
 	width :650px;
